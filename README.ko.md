@@ -1,5 +1,11 @@
 # 산업용 데이터 수집 게이트웨이 v1.0.0
 
+[![Docker Build](https://github.com/qinshihu/FactoryLink/actions/workflows/docker-build.yml/badge.svg)](https://github.com/qinshihu/FactoryLink/actions/workflows/docker-build.yml)
+[![Release Build](https://github.com/qinshihu/FactoryLink/actions/workflows/release.yml/badge.svg)](https://github.com/qinshihu/FactoryLink/actions/workflows/release.yml)
+[![License](https://img.shields.io/badge/license-MPL--2.0-blue.svg)](./LICENSE)
+
+[中文](./README.md) | [English](./README.en.md) | [日本語](./README.ja.md) | [Deutsch](./README.de.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Русский](./README.ru.md) | [Português](./README.pt.md)
+
 ## 이게 뭔가요?
 
 **단일 EXE, 더블클릭으로 실행, 의존성 제로, 완전 오픈소스 & 무료** 산업용 디바이스 데이터 수집 게이트웨이입니다.

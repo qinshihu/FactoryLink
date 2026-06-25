@@ -1,5 +1,11 @@
 # Passerelle d'acquisition de données industrielles v1.0.0
 
+[![Docker Build](https://github.com/qinshihu/FactoryLink/actions/workflows/docker-build.yml/badge.svg)](https://github.com/qinshihu/FactoryLink/actions/workflows/docker-build.yml)
+[![Release Build](https://github.com/qinshihu/FactoryLink/actions/workflows/release.yml/badge.svg)](https://github.com/qinshihu/FactoryLink/actions/workflows/release.yml)
+[![License](https://img.shields.io/badge/license-MPL--2.0-blue.svg)](./LICENSE)
+
+[中文](./README.md) | [English](./README.en.md) | [日本語](./README.ja.md) | [한국어](./README.ko.md) | [Deutsch](./README.de.md) | [Español](./README.es.md) | [Русский](./README.ru.md) | [Português](./README.pt.md)
+
 ## Qu'est-ce que c'est ?
 
 Une **passerelle d'acquisition de données industrielles** en **un seul EXE, double-clic pour lancer, zéro dépendance, entièrement open-source et gratuite**.

@@ -1,5 +1,11 @@
 # Industrial Data Acquisition Gateway v1.0.0
 
+[![Docker Build](https://github.com/qinshihu/FactoryLink/actions/workflows/docker-build.yml/badge.svg)](https://github.com/qinshihu/FactoryLink/actions/workflows/docker-build.yml)
+[![Release Build](https://github.com/qinshihu/FactoryLink/actions/workflows/release.yml/badge.svg)](https://github.com/qinshihu/FactoryLink/actions/workflows/release.yml)
+[![License](https://img.shields.io/badge/license-MPL--2.0-blue.svg)](./LICENSE)
+
+[中文](./README.md) | [日本語](./README.ja.md) | [한국어](./README.ko.md) | [Deutsch](./README.de.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Русский](./README.ru.md) | [Português](./README.pt.md)
+
 ## What is this?
 
 A **single EXE, double-click to run, zero dependencies, completely open-source and free** industrial device data acquisition gateway.

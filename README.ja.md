@@ -1,5 +1,11 @@
 # 産業用データ収集ゲートウェイ v1.0.0
 
+[![Docker Build](https://github.com/qinshihu/FactoryLink/actions/workflows/docker-build.yml/badge.svg)](https://github.com/qinshihu/FactoryLink/actions/workflows/docker-build.yml)
+[![Release Build](https://github.com/qinshihu/FactoryLink/actions/workflows/release.yml/badge.svg)](https://github.com/qinshihu/FactoryLink/actions/workflows/release.yml)
+[![License](https://img.shields.io/badge/license-MPL--2.0-blue.svg)](./LICENSE)
+
+[中文](./README.md) | [English](./README.en.md) | [한국어](./README.ko.md) | [Deutsch](./README.de.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Русский](./README.ru.md) | [Português](./README.pt.md)
+
 ## これは何？
 
 **単一EXE、ダブルクリックで実行、依存関係ゼロ、完全オープンソース＆無料**の産業用デバイスデータ収集ゲートウェイです。

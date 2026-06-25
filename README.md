@@ -1,5 +1,11 @@
 # 工业数据采集网关 v1.0.0
 
+[![Docker Build](https://github.com/qinshihu/FactoryLink/actions/workflows/docker-build.yml/badge.svg)](https://github.com/qinshihu/FactoryLink/actions/workflows/docker-build.yml)
+[![Release Build](https://github.com/qinshihu/FactoryLink/actions/workflows/release.yml/badge.svg)](https://github.com/qinshihu/FactoryLink/actions/workflows/release.yml)
+[![License](https://img.shields.io/badge/license-MPL--2.0-blue.svg)](./LICENSE)
+
+[English](./README.en.md) | [日本語](./README.ja.md) | [한국어](./README.ko.md) | [Deutsch](./README.de.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Русский](./README.ru.md) | [Português](./README.pt.md)
+
 ## 这是什么？
 
 一个**单EXE、双击就能跑、零依赖、完全开源免费**的工业设备数据采集网关。
