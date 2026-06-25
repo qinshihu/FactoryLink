@@ -81,6 +81,6 @@ jobs:
 
             ### Docker 镜像
             ```
-            docker pull registry.cn-hangzhou.aliyuncs.com/huluwa666/tsq-images-hub:${{ github.ref_name }}
+            docker pull registry.cn-hangzhou.aliyuncs.com/huluwa666/tsq-images-hub:factorylink-${{ github.ref_name }}
             ```
           generate_release_notes: true

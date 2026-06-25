@@ -247,7 +247,7 @@ build.bat
 
 ```bash
 # 拉取镜像
-docker pull registry.cn-hangzhou.aliyuncs.com/huluwa666/tsq-images-hub:latest
+docker pull registry.cn-hangzhou.aliyuncs.com/huluwa666/tsq-images-hub:factorylink-latest
 
 # 创建目录存放配置和日志
 mkdir -p /opt/factorylink/{logs,config}
@@ -259,7 +259,7 @@ docker run -d \
   -p 8000:8000 \
   -v /opt/factorylink/config:/app/config \
   -v /opt/factorylink/logs:/app/logs \
-  registry.cn-hangzhou.aliyuncs.com/huluwa666/tsq-images-hub:latest
+  registry.cn-hangzhou.aliyuncs.com/huluwa666/tsq-images-hub:factorylink-latest
 ```
 
 ### 参数说明
@@ -287,7 +287,7 @@ docker run -d \
 version: '3'
 services:
   factorylink:
-    image: registry.cn-hangzhou.aliyuncs.com/huluwa666/tsq-images-hub:latest
+    image: registry.cn-hangzhou.aliyuncs.com/huluwa666/tsq-images-hub:factorylink-latest
     container_name: factorylink
     restart: always
     ports:
