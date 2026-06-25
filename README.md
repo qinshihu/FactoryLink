@@ -397,6 +397,8 @@ A: 默认1000ms（1秒）。PLC响应快可以设500ms，慢的设备建议2000m
 - 📧 邮箱：huawei_network@foxmail.com
 - 💬 微信公众号：**IT Online**
 
+![公众号背面](industrial-gateway\images\公众号背面.png)
+
 ---
 
 [MPL-2.0](./LICENSE) © 谭策
