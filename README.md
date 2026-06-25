@@ -21,6 +21,8 @@
 5. 点"启动采集"，完事了
 
 > 右键托盘图标可以：打开配置页面、启动/停止采集、退出程序。
+> 
+> 也可以用 Docker 部署：[Docker 部署说明](#docker-部署)
 
 ## 支持的协议
 
@@ -236,6 +238,70 @@ build.bat
 ```
 
 输出文件：`dist/工业数据采集网关.exe`（约25MB）
+
+## Docker 部署
+
+如果不想用 EXE，也可以用 Docker 方式运行（适合部署在服务器、工控机、树莓派上）。
+
+### 快速启动
+
+```bash
+# 拉取镜像
+docker pull registry.cn-hangzhou.aliyuncs.com/huluwa666/tsq-images-hub:latest
+
+# 创建目录存放配置和日志
+mkdir -p /opt/factorylink/{logs,config}
+
+# 运行容器
+docker run -d \
+  --name factorylink \
+  --restart always \
+  -p 8000:8000 \
+  -v /opt/factorylink/config:/app/config \
+  -v /opt/factorylink/logs:/app/logs \
+  registry.cn-hangzhou.aliyuncs.com/huluwa666/tsq-images-hub:latest
+```
+
+### 参数说明
+
+| 参数 | 说明 |
+|------|------|
+| `-p 8000:8000` | 映射 Web 配置页面端口 |
+| `-v /opt/factorylink/config:/app/config` | 挂载配置目录（config.json 保存在这里） |
+| `-v /opt/factorylink/logs:/app/logs` | 挂载日志目录 |
+| `--restart always` | 容器异常退出自动重启 |
+
+### 首次使用
+
+1. 容器启动后，浏览器打开 `http://你的服务器IP:8000`
+2. 配置 PLC 设备和 MQTT
+3. 点击"启动采集"
+
+> 注意：Docker 版本**不支持**系统托盘图标和开机自启动功能（这两个是 Windows 专属）。
+
+### 使用 docker-compose
+
+创建 `docker-compose.yml`：
+
+```yaml
+version: '3'
+services:
+  factorylink:
+    image: registry.cn-hangzhou.aliyuncs.com/huluwa666/tsq-images-hub:latest
+    container_name: factorylink
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./config:/app/config
+      - ./logs:/app/logs
+```
+
+启动：
+
+```bash
+docker-compose up -d
+```
 
 ## 技术栈
 
