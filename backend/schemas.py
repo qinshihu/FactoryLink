@@ -115,3 +115,26 @@ class TestConnectionResponse(BaseModel):
     success: bool
     message: str
     elapsed_ms: int = 0
+
+
+class AIParseRequest(BaseModel):
+    """AI解析请求"""
+    input: str = Field(..., description="用户的自然语言描述")
+    api_url: Optional[str] = Field(default=None, description="AI API地址")
+    api_key: Optional[str] = Field(default=None, description="AI API Key")
+    model: Optional[str] = Field(default=None, description="模型名称")
+
+
+class AIParseResponse(BaseModel):
+    """AI解析响应"""
+    success: bool
+    message: str = ""
+    config: Optional[dict] = None
+
+
+class AIConfig(BaseModel):
+    """AI配置"""
+    enabled: bool = Field(default=False, description="是否启用AI助手")
+    api_url: str = Field(default="https://api.openai.com/v1", description="AI API地址")
+    api_key: str = Field(default="", description="AI API Key")
+    model: str = Field(default="gpt-3.5-turbo", description="模型名称")

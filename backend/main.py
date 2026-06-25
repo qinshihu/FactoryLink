@@ -11,9 +11,9 @@ import webbrowser
 from pathlib import Path
 from typing import Dict, Optional
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Request, UploadFile, File
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 import uvicorn
 
 # 将backend目录加入路径
@@ -25,13 +25,15 @@ from config import config_manager
 from logger import gateway_logger, logger
 from schemas import (
     ApiResponse, DeviceConfig, MqttConfig, GatewayConfig,
-    TestConnectionRequest, TestConnectionResponse, LogQuery
+    TestConnectionRequest, TestConnectionResponse, LogQuery,
+    AIParseRequest, AIConfig
 )
 from collector.base import BaseCollector
 from collector.modbus import ModbusCollector
 from collector.s7 import S7Collector
 from collector.mitsubishi import MitsubishiCollector
 from forwarder.mqtt import mqtt_forwarder
+from ai_service import ai_service
 
 
 # ==================== FastAPI应用 ====================
@@ -443,9 +445,164 @@ async def set_log_level(level: str = "INFO"):
 # ---- Excel导入 ----
 
 @app.post("/api/devices/import-excel")
-async def import_excel():
-    """导入Excel点位表（简化版，前端上传文件后解析）"""
-    return ApiResponse(success=True, message="Excel导入功能由前端处理")
+async def import_excel(file: UploadFile = File(...)):
+    """导入Excel点位表，解析并返回点位列表"""
+    import io
+    import openpyxl
+
+    if not file.filename:
+        return ApiResponse(success=False, message="未选择文件")
+
+    # 检查文件类型
+    ext = Path(file.filename).suffix.lower()
+    if ext not in ('.xlsx', '.xls'):
+        return ApiResponse(success=False, message="仅支持 .xlsx 或 .xls 格式的Excel文件")
+
+    try:
+        contents = await file.read()
+        wb = openpyxl.load_workbook(io.BytesIO(contents), read_only=True)
+        ws = wb.active
+
+        rows = list(ws.iter_rows(values_only=True))
+        if len(rows) < 2:
+            wb.close()
+            return ApiResponse(success=False, message="Excel文件至少需要包含表头和一行数据")
+
+        # 第一行为表头
+        header = [str(h).strip() if h else '' for h in rows[0]]
+        points = []
+
+        # 映射中文/英文表头到字段名
+        field_map = {
+            '点位名称': 'name', '名称': 'name', 'name': 'name',
+            '地址': 'address', 'address': 'address',
+            '数据类型': 'type', '类型': 'type', 'type': 'type',
+            '倍率': 'rate', 'rate': 'rate',
+            '偏移': 'offset', '偏移量': 'offset', 'offset': 'offset',
+            '单位': 'unit', 'unit': 'unit',
+        }
+
+        # 找到各字段对应的列索引
+        col_index = {}
+        for i, h in enumerate(header):
+            key = field_map.get(h.lower() if h else '')
+            if key:
+                col_index[key] = i
+
+        if 'name' not in col_index or 'address' not in col_index:
+            wb.close()
+            return ApiResponse(success=False, message='Excel表头必须包含"点位名称"和"地址"列')
+
+        valid_types = {'bool', 'int16', 'uint16', 'int32', 'uint32', 'float', 'double'}
+
+        for row in rows[1:]:
+            if not row or all(c is None for c in row):
+                continue
+
+            name = str(row[col_index['name']]).strip() if col_index.get('name') is not None and len(row) > col_index['name'] and row[col_index['name']] is not None else ''
+            address = str(row[col_index['address']]).strip() if col_index.get('address') is not None and len(row) > col_index['address'] and row[col_index['address']] is not None else ''
+
+            if not name or not address:
+                continue
+
+            data_type = str(row[col_index['type']]).strip().lower() if col_index.get('type') is not None and len(row) > col_index['type'] and row[col_index['type']] is not None else 'float'
+            if data_type not in valid_types:
+                data_type = 'float'
+
+            rate = 1.0
+            if col_index.get('rate') is not None and len(row) > col_index['rate']:
+                try:
+                    rate = float(row[col_index['rate']])
+                except (ValueError, TypeError):
+                    rate = 1.0
+
+            offset = 0.0
+            if col_index.get('offset') is not None and len(row) > col_index['offset']:
+                try:
+                    offset = float(row[col_index['offset']])
+                except (ValueError, TypeError):
+                    offset = 0.0
+
+            unit = str(row[col_index['unit']]).strip() if col_index.get('unit') is not None and len(row) > col_index['unit'] and row[col_index['unit']] is not None else ''
+
+            points.append({
+                "name": name,
+                "address": address,
+                "type": data_type,
+                "rate": rate,
+                "offset": offset,
+                "unit": unit
+            })
+
+        wb.close()
+
+        if not points:
+            return ApiResponse(success=False, message="未解析到有效点位数据，请检查Excel格式")
+
+        logger.info(f"Excel导入成功: {file.filename}, 解析到 {len(points)} 个点位")
+        return ApiResponse(success=True, message=f"成功导入 {len(points)} 个点位", data={"points": points})
+
+    except openpyxl.utils.exceptions.InvalidFileException:
+        return ApiResponse(success=False, message="文件格式无效，请确认是有效的Excel文件")
+    except Exception as e:
+        logger.error(f"Excel导入失败: {e}")
+        return ApiResponse(success=False, message=f"Excel解析失败: {str(e)}")
+
+
+# ---- AI配置助手 ----
+
+@app.get("/api/ai/config")
+async def get_ai_config():
+    """获取AI配置"""
+    ai_config = config_manager.get("ai", {})
+    return ApiResponse(data=ai_config)
+
+
+@app.put("/api/ai/config")
+async def update_ai_config(config: AIConfig):
+    """更新AI配置"""
+    config_manager.set("ai", config.model_dump())
+    config_manager.save()
+    return ApiResponse(success=True, message="AI配置已保存")
+
+
+@app.post("/api/ai/parse")
+async def ai_parse_config(req: AIParseRequest):
+    """AI解析自然语言为设备配置"""
+    # 优先使用请求中的配置，否则使用全局配置
+    ai_config = config_manager.get("ai", {})
+    api_url = req.api_url or ai_config.get("api_url", "https://api.openai.com/v1")
+    api_key = req.api_key or ai_config.get("api_key", "")
+    model = req.model or ai_config.get("model", "gpt-3.5-turbo")
+
+    if not api_key:
+        return ApiResponse(success=False, message="请先在系统设置中配置AI API Key")
+
+    result = await ai_service.parse_config(req.input, api_url, api_key, model)
+    if result["success"]:
+        return ApiResponse(success=True, message="解析成功", data=result["config"])
+    else:
+        return ApiResponse(success=False, message=result["message"])
+
+
+@app.post("/api/ai/parse-stream")
+async def ai_parse_config_stream(req: AIParseRequest):
+    """AI解析自然语言为设备配置（SSE流式输出）"""
+    ai_config = config_manager.get("ai", {})
+    api_url = req.api_url or ai_config.get("api_url", "https://api.openai.com/v1")
+    api_key = req.api_key or ai_config.get("api_key", "")
+    model = req.model or ai_config.get("model", "gpt-3.5-turbo")
+
+    if not api_key:
+        async def error_gen():
+            yield f"data: {json.dumps({'type': 'error', 'message': '请先在系统设置中配置AI API Key'})}\n\n"
+        return StreamingResponse(error_gen(), media_type="text/event-stream")
+
+    async def event_stream():
+        async for chunk in ai_service.parse_config_stream(req.input, api_url, api_key, model):
+            yield f"data: {chunk}\n\n"
+
+    return StreamingResponse(event_stream(), media_type="text/event-stream")
 
 
 # ---- 开机自启动 ----

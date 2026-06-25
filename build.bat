@@ -38,6 +38,8 @@ pyinstaller --onefile ^
     --hidden-import fastapi ^
     --hidden-import websockets ^
     --hidden-import pystray ^
+    --hidden-import httpx ^
+    --hidden-import openpyxl ^
     --name "工业数据采集网关" ^
     --icon "icon.ico" ^
     backend/main.py

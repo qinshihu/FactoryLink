@@ -28,6 +28,12 @@ DEFAULT_CONFIG = {
         "max_retries": 0,
         "base_delay": 1,
         "max_delay": 60
+    },
+    "ai": {
+        "enabled": False,
+        "api_url": "https://api.openai.com/v1",
+        "api_key": "",
+        "model": "gpt-3.5-turbo"
     }
 }
 

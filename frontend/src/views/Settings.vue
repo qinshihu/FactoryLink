@@ -98,6 +98,43 @@
       </el-form>
     </el-card>
 
+    <!-- AI配置助手 -->
+    <el-card class="settings-card">
+      <template #header>
+        <span>AI配置助手</span>
+      </template>
+      <el-form :model="aiForm" label-width="120px">
+        <el-form-item label="启用AI助手">
+          <el-switch v-model="aiForm.enabled" />
+          <span class="form-tip" style="margin-left: 10px">
+            在设备配置页面显示AI对话面板
+          </span>
+        </el-form-item>
+        <el-form-item label="API地址">
+          <el-input v-model="aiForm.api_url" placeholder="https://api.openai.com/v1">
+            <template #prepend>URL</template>
+          </el-input>
+          <div class="form-tip" style="margin-top: 4px">
+            支持OpenAI兼容接口（通义千问、DeepSeek等），默认OpenAI格式
+          </div>
+        </el-form-item>
+        <el-form-item label="API Key">
+          <el-input v-model="aiForm.api_key" type="password" show-password placeholder="sk-..." />
+        </el-form-item>
+        <el-form-item label="模型名称">
+          <el-input v-model="aiForm.model" placeholder="gpt-3.5-turbo">
+            <template #prepend>Model</template>
+          </el-input>
+          <div class="form-tip" style="margin-top: 4px">
+            如 gpt-4o / qwen-turbo / deepseek-chat
+          </div>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="saveAI">保存AI配置</el-button>
+        </el-form-item>
+      </el-form>
+    </el-card>
+
     <!-- 应用配置 -->
     <el-card class="settings-card">
       <template #header>
@@ -171,6 +208,13 @@ const reconnectForm = ref({
 const autostartEnabled = ref(false)
 const logs = ref([])
 const logLevel = ref('')
+
+const aiForm = ref({
+  enabled: false,
+  api_url: 'https://api.openai.com/v1',
+  api_key: '',
+  model: 'gpt-3.5-turbo'
+})
 
 async function loadConfig() {
   try {
@@ -258,6 +302,26 @@ async function toggleAutostart(val) {
   }
 }
 
+async function loadAIConfig() {
+  try {
+    const res = await axios.get('/api/ai/config')
+    if (res.data.success && res.data.data) {
+      aiForm.value = { ...aiForm.value, ...res.data.data }
+    }
+  } catch (e) {
+    // 忽略
+  }
+}
+
+async function saveAI() {
+  try {
+    await axios.put('/api/ai/config', aiForm.value)
+    ElMessage.success('AI配置已保存')
+  } catch (e) {
+    ElMessage.error('保存失败')
+  }
+}
+
 async function loadLogs() {
   try {
     const params = { lines: 200 }
@@ -287,6 +351,7 @@ function getLogClass(log) {
 onMounted(() => {
   loadConfig()
   loadAutostart()
+  loadAIConfig()
   loadLogs()
 })
 </script>
