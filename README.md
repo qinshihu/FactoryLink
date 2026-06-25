@@ -6,6 +6,8 @@
 
 [English](./README.en.md) | [日本語](./README.ja.md) | [한국어](./README.ko.md) | [Deutsch](./README.de.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Русский](./README.ru.md) | [Português](./README.pt.md)
 
+> 国内镜像：[Gitee](https://gitee.com/IT_Oline/FactoryLink) | [GitCode](https://gitcode.com/gcw_IM7Aihp/FactoryLink)
+
 ## 这是什么？
 
 一个**单EXE、双击就能跑、零依赖、完全开源免费**的工业设备数据采集网关。
