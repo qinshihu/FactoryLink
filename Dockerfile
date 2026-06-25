@@ -6,7 +6,14 @@ LABEL version="1.0.0"
 
 WORKDIR /app
 
-COPY requirements.txt .
+# 安装系统依赖（Pillow 需要，虽然 Docker 不用托盘但 openpyxl 等可能间接依赖）
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    libc6-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# 使用 Docker 专用依赖文件（不含 pystray/Pillow，Docker 不需要托盘图标）
+COPY requirements-docker.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY backend/ ./backend/
