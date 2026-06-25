@@ -14,10 +14,20 @@
 
 ## 怎么用？
 
-1. 下载 `工业数据采集网关.exe`
+1. [下载 `工业数据采集网关.exe`](https://github.com/qinshihu/FactoryLink/releases/latest)
+
 2. 双击运行（右下角会出现托盘图标）
+
+![托盘图标](industrial-gateway\images\1 (2).png)
+
 3. 浏览器自动打开配置页面（默认 `http://localhost:8000`）
+
+![配置页面](industrial-gateway\images\1 (1).png)
+
 4. 配置你的PLC IP、点位表、MQTT地址
+
+  ![设备配置](industrial-gateway\images\1 (4).png)
+
 5. 点"启动采集"，完事了
 
 > 右键托盘图标可以：打开配置页面、启动/停止采集、退出程序。
