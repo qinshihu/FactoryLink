@@ -51,8 +51,7 @@ jobs:
         with:
           images: ${{ env.ACR_REGISTRY }}/${{ env.ACR_NAMESPACE }}/${{ env.ACR_REPO }}
           tags: |
-            type=ref,event=tag,prefix=factorylink-
-            type=raw,value=factorylink-latest,enable={{is_default_branch}}
+            type=raw,value=factorylink-latest
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
