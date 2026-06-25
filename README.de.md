@@ -24,15 +24,15 @@ Entwickelt für Fertigungsingenieure, Fabrik-IT-Mitarbeiter und kleine Systemint
 
 2. Doppelklicken zum Starten (ein Taskleistensymbol erscheint unten rechts)
 
-![Taskleistensymbol](industrial-gateway\images\1 (2).png)
+![Taskleistensymbol](images/1 (2).png)
 
 3. Der Browser öffnet automatisch die Konfigurationsseite (Standard: `http://localhost:8000`)
 
-![Konfigurationsseite](industrial-gateway\images\1 (1).png)
+![Konfigurationsseite](images/1 (1).png)
 
 4. PLC-IP, Punktetabelle und MQTT-Adresse konfigurieren
 
-  ![Gerätekonfiguration](industrial-gateway\images\1 (4).png)
+  ![Gerätekonfiguration](images/1 (4).png)
 
 5. Auf „Datenerfassung starten" klicken — fertig!
 
@@ -403,7 +403,7 @@ Dieses Projekt ist unter der **Mozilla Public License 2.0 (MPL-2.0)** als Open S
 - 📧 E-Mail: huawei_network@foxmail.com
 - 💬 WeChat Official Account: **IT Online**
 
-![WeChat QR-Code](industrial-gateway\images\公众号背面.png)
+![WeChat QR-Code](images/公众号背面.png)
 
 ---
 

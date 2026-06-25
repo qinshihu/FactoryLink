@@ -24,15 +24,15 @@ Conçue pour les ingénieurs de terrain, le personnel IT d'usine et les petits i
 
 2. Double-cliquez pour lancer (une icône apparaîtra dans la barre d'état système en bas à droite)
 
-![Icône de la barre d'état](industrial-gateway\images\1 (2).png)
+![Icône de la barre d'état](images/1 (2).png)
 
 3. Le navigateur ouvre automatiquement la page de configuration (par défaut `http://localhost:8000`)
 
-![Page de configuration](industrial-gateway\images\1 (1).png)
+![Page de configuration](images/1 (1).png)
 
 4. Configurez l'IP de votre PLC, la table de points et l'adresse MQTT
 
-  ![Configuration du périphérique](industrial-gateway\images\1 (4).png)
+  ![Configuration du périphérique](images/1 (4).png)
 
 5. Cliquez sur "Démarrer l'acquisition" — c'est tout !
 
@@ -403,7 +403,7 @@ Ce projet est open-source sous la licence **Mozilla Public License 2.0 (MPL-2.0)
 - 📧 Email : huawei_network@foxmail.com
 - 💬 Compte officiel WeChat : **IT Online**
 
-![QR Code WeChat](industrial-gateway\images\公众号背面.png)
+![QR Code WeChat](images/公众号背面.png)
 
 ---
 

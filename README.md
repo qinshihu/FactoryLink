@@ -24,15 +24,15 @@
 
 2. 双击运行（右下角会出现托盘图标）
 
-![托盘图标](industrial-gateway\images\1 (2).png)
+![托盘图标](images/1 (2).png)
 
 3. 浏览器自动打开配置页面（默认 `http://localhost:8000`）
 
-![配置页面](industrial-gateway\images\1 (1).png)
+![配置页面](images/1 (1).png)
 
 4. 配置你的PLC IP、点位表、MQTT地址
 
-  ![设备配置](industrial-gateway\images\1 (4).png)
+  ![设备配置](images/1 (4).png)
 
 5. 点"启动采集"，完事了
 
@@ -403,7 +403,7 @@ A: 默认1000ms（1秒）。PLC响应快可以设500ms，慢的设备建议2000m
 - 📧 邮箱：huawei_network@foxmail.com
 - 💬 微信公众号：**IT Online**
 
-![公众号背面](industrial-gateway\images\公众号背面.png)
+![公众号背面](images/公众号背面.png)
 
 ---
 

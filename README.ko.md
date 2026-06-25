@@ -24,15 +24,15 @@
 
 2. 더블클릭으로 실행 (우측 하단에 트레이 아이콘이 표시됩니다)
 
-![트레이 아이콘](industrial-gateway\images\1 (2).png)
+![트레이 아이콘](images/1 (2).png)
 
 3. 브라우저가 자동으로 설정 페이지를 엽니다 (기본값 `http://localhost:8000`)
 
-![설정 페이지](industrial-gateway\images\1 (1).png)
+![설정 페이지](images/1 (1).png)
 
 4. PLC IP, 포인트 테이블, MQTT 주소를 설정합니다
 
-  ![디바이스 설정](industrial-gateway\images\1 (4).png)
+  ![디바이스 설정](images/1 (4).png)
 
 5. "수집 시작"을 클릭하면 끝입니다!
 
@@ -403,7 +403,7 @@ A: 기본값은 1000ms (1초)입니다. 빠른 PLC는 500ms, 느린 디바이스
 - 📧 이메일: huawei_network@foxmail.com
 - 💬 WeChat 공식 계정: **IT Online**
 
-![WeChat QR 코드](industrial-gateway\images\公众号背面.png)
+![WeChat QR 코드](images/公众号背面.png)
 
 ---
 
