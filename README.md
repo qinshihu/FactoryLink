@@ -385,4 +385,18 @@ A: 默认1000ms（1秒）。PLC响应快可以设500ms，慢的设备建议2000m
 
 ---
 
-作者：谭策 | IT Online | https://www.zjzwfw.cloud/
+## 许可证
+
+本项目采用 **Mozilla Public License 2.0 (MPL-2.0)** 许可证开源。
+
+## 作者
+
+**谭策** — 独立开发者 | 工业物联网领域探索者
+
+- 📝 博客：[https://www.zjzwfw.cloud/](https://www.zjzwfw.cloud/)
+- 📧 邮箱：huawei_network@foxmail.com
+- 💬 微信公众号：**IT Online**
+
+---
+
+[MPL-2.0](./LICENSE) © 谭策
