@@ -24,15 +24,15 @@ Designed for frontline engineers, factory IT staff, and small system integrators
 
 2. Double-click to run (a system tray icon will appear in the bottom-right corner)
 
-![Tray Icon](images/1 (2).png)
+![Tray Icon](images/1(2).png)
 
 3. The browser will automatically open the configuration page (default `http://localhost:8000`)
 
-![Configuration Page](images/1 (1).png)
+![Configuration Page](images/1(1).png)
 
 4. Configure your PLC IP, point table, and MQTT address
 
-  ![Device Configuration](images/1 (4).png)
+![Device Configuration](images/1(4).png)  
 
 5. Click "Start Acquisition" — done!
 

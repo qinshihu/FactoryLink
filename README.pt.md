@@ -24,15 +24,15 @@ Projetado para engenheiros de chão de fábrica, equipe de TI de fábrica e pequ
 
 2. Clique duas vezes para executar (um ícone aparecerá na bandeja do sistema no canto inferior direito)
 
-![Ícone da bandeja](images/1 (2).png)
+![Ícone da bandeja](images/1(2).png)
 
 3. O navegador abrirá automaticamente a página de configuração (padrão `http://localhost:8000`)
 
-![Página de configuração](images/1 (1).png)
+![Página de configuração](images/1(1).png)
 
 4. Configure o IP do seu PLC, tabela de pontos e endereço MQTT
 
-  ![Configuração do dispositivo](images/1 (4).png)
+![Configuração do dispositivo](images/1(4).png)
 
 5. Clique em "Iniciar aquisição" — pronto!
 

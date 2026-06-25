@@ -24,15 +24,15 @@ Conçue pour les ingénieurs de terrain, le personnel IT d'usine et les petits i
 
 2. Double-cliquez pour lancer (une icône apparaîtra dans la barre d'état système en bas à droite)
 
-![Icône de la barre d'état](images/1 (2).png)
+![Icône de la barre d'état](images/1(2).png)
 
 3. Le navigateur ouvre automatiquement la page de configuration (par défaut `http://localhost:8000`)
 
-![Page de configuration](images/1 (1).png)
+![Page de configuration](images/1(1).png)
 
 4. Configurez l'IP de votre PLC, la table de points et l'adresse MQTT
 
-  ![Configuration du périphérique](images/1 (4).png)
+![Configuration du périphérique](images/1(4).png)
 
 5. Cliquez sur "Démarrer l'acquisition" — c'est tout !
 

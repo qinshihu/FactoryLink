@@ -24,15 +24,15 @@ Diseñado para ingenieros de planta, personal de IT de fábrica y pequeños inte
 
 2. Doble clic para ejecutar (aparecerá un icono en la bandeja del sistema en la esquina inferior derecha)
 
-![Icono de bandeja](images/1 (2).png)
+![Icono de bandeja](images/1(2).png)
 
 3. El navegador abrirá automáticamente la página de configuración (por defecto `http://localhost:8000`)
 
-![Página de configuración](images/1 (1).png)
+![Página de configuración](images/1(1).png)
 
 4. Configure la IP de su PLC, tabla de puntos y dirección MQTT
 
-  ![Configuración de dispositivo](images/1 (4).png)
+![Configuración de dispositivo](images/1(4).png)  
 
 5. Haga clic en "Iniciar adquisición" — ¡listo!
 

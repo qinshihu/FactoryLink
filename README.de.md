@@ -24,15 +24,15 @@ Entwickelt für Fertigungsingenieure, Fabrik-IT-Mitarbeiter und kleine Systemint
 
 2. Doppelklicken zum Starten (ein Taskleistensymbol erscheint unten rechts)
 
-![Taskleistensymbol](images/1 (2).png)
+![Taskleistensymbol](images/1(2).png)
 
 3. Der Browser öffnet automatisch die Konfigurationsseite (Standard: `http://localhost:8000`)
 
-![Konfigurationsseite](images/1 (1).png)
+![Konfigurationsseite](images/1(1).png)
 
 4. PLC-IP, Punktetabelle und MQTT-Adresse konfigurieren
 
-  ![Gerätekonfiguration](images/1 (4).png)
+  ![Gerätekonfiguration](images/1(4).png)
 
 5. Auf „Datenerfassung starten" klicken — fertig!
 
