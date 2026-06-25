@@ -1,0 +1,34 @@
+name: Sync to Gitee & GitCode
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sync-gitee:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to Gitee
+        run: |
+          git remote add gitee https://IT_Oline:${{ secrets.GITEE_TOKEN }}@gitee.com/IT_Oline/FactoryLink.git
+          git push gitee main --force --tags
+
+  sync-gitcode:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to GitCode
+        run: |
+          git remote add gitcode https://gcw_IM7aAihp:${{ secrets.GITCODE_TOKEN }}@gitcode.com/gcw_IM7aAihp/FactoryLink.git
+          git push gitcode main --force --tags
