@@ -30,16 +30,16 @@ echo [3/3] 正在打包后端...
 pyinstaller --onefile ^
     --windowed ^
     --add-data "frontend/dist;frontend/dist" ^
-    --hidden-import pymodbus ^
+    --collect-all fastapi ^
+    --collect-all uvicorn ^
+    --collect-all pymodbus ^
+    --collect-all paho.mqtt.client ^
+    --collect-all websockets ^
+    --collect-all pystray ^
+    --collect-all httpx ^
+    --collect-all openpyxl ^
     --hidden-import snap7 ^
     --hidden-import pymcprotocol ^
-    --hidden-import paho.mqtt.client ^
-    --hidden-import uvicorn ^
-    --hidden-import fastapi ^
-    --hidden-import websockets ^
-    --hidden-import pystray ^
-    --hidden-import httpx ^
-    --hidden-import openpyxl ^
     --name "工业数据采集网关" ^
     --icon "icon.ico" ^
     backend/main.py
