@@ -55,7 +55,8 @@ Conçue pour les ingénieurs de terrain, le personnel IT d'usine et les petits i
 - **Interface Web** : Configuration via navigateur, aucune connaissance en ligne de commande nécessaire
 - **Données en temps réel** : Push WebSocket, données actualisées en temps réel
 - **Transfert MQTT** : Transfert automatique des données collectées vers le serveur MQTT
-- **Import Excel** : Import en masse des configurations de points depuis des feuilles Excel
+- **Import Excel** : Import en masse des configurations de points depuis des feuilles Excel avec dialogue d'aperçu
+- **Assistant IA** : Décrivez votre appareil en langage naturel, l'IA génère automatiquement la configuration (compatible OpenAI / Qwen / DeepSeek, streaming SSE + aperçu modifiable)
 - **Test de connexion** : Test de connectivité PLC en un clic
 - **Reconnexion automatique** : Reconnexion automatique en cas de perte réseau avec backoff exponentiel
 - **Démarrage automatique** : Configuration du démarrage Windows en un clic
@@ -70,8 +71,8 @@ Conçue pour les ingénieurs de terrain, le personnel IT d'usine et les petits i
 | Page | Fonctions |
 |------|-----------|
 | **Accueil** | Liste des cartes de périphériques, affichage des données en temps réel, bouton démarrer/arrêter, état en ligne des périphériques, état de connexion MQTT |
-| **Configuration** | Ajouter/modifier/supprimer des périphériques, configuration par protocole, CRUD de la table de points, import Excel/téléchargement de modèle, test de connexion |
-| **Paramètres** | Configuration MQTT, intervalle de collecte, stratégie de reconnexion, démarrage automatique, visualiseur de logs (avec filtrage par niveau) |
+| **Configuration** | Ajouter/modifier/supprimer des périphériques, configuration par protocole, CRUD de la table de points, import Excel (aperçu)/téléchargement de modèle, test de connexion, **Assistant IA** (langage naturel vers configuration) |
+| **Paramètres** | Configuration MQTT, intervalle de collecte, stratégie de reconnexion, démarrage automatique, **Paramètres IA** (URL API/Clé/Modèle), visualisation des logs (filtrage par niveau) |
 
 ## Format des données
 
@@ -166,6 +167,12 @@ Toute la configuration est enregistrée dans `config.json` dans le même répert
     "max_retries": 0,
     "base_delay": 1,
     "max_delay": 60
+  },
+  "ai": {
+    "enabled": false,
+    "api_url": "https://api.openai.com/v1",
+    "api_key": "",
+    "model": "gpt-3.5-turbo"
   }
 }
 ```

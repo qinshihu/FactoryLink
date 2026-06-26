@@ -55,7 +55,8 @@ Projetado para engenheiros de chão de fábrica, equipe de TI de fábrica e pequ
 - **Interface Web**: Configuração via navegador, sem conhecimento de linha de comando
 - **Dados em tempo real**: Push via WebSocket, dados atualizados em tempo real
 - **Encaminhamento MQTT**: Encaminhamento automático dos dados coletados para o servidor MQTT
-- **Importação Excel**: Importação em lote de configurações de pontos a partir de planilhas Excel
+- **Importação Excel**: Importação em lote de configurações de pontos a partir de planilhas Excel com diálogo de pré-visualização
+- **Assistente IA**: Descreva seu dispositivo em linguagem natural, a IA gera automaticamente a configuração (compatível com OpenAI / Qwen / DeepSeek, streaming SSE + pré-visualização editável)
 - **Teste de conexão**: Teste de conectividade do PLC com um clique
 - **Reconexão automática**: Reconexão automática em caso de perda de rede com backoff exponencial
 - **Inicialização automática**: Configuração de inicialização do Windows com um clique
@@ -70,8 +71,8 @@ Projetado para engenheiros de chão de fábrica, equipe de TI de fábrica e pequ
 | Página | Funções |
 |--------|---------|
 | **Início** | Lista de cartões de dispositivos, exibição de dados em tempo real, botão iniciar/parar, status online dos dispositivos, status de conexão MQTT |
-| **Config. Dispositivo** | Adicionar/editar/excluir dispositivos, configuração por protocolo, CRUD da tabela de pontos, importação Excel/download de modelo, teste de conexão |
-| **Config. Sistema** | Configuração MQTT, intervalo de coleta, estratégia de reconexão, inicialização automática, visualizador de logs (com filtragem por nível) |
+| **Config. Dispositivo** | Adicionar/editar/excluir dispositivos, configuração por protocolo, CRUD da tabela de pontos, importação Excel (pré-visualização)/download de modelo, teste de conexão, **Assistente IA** (linguagem natural para configuração) |
+| **Config. Sistema** | Configuração MQTT, intervalo de coleta, estratégia de reconexão, inicialização automática, **Config. IA** (URL API/Chave/Modelo), visualizador de logs (filtragem por nível) |
 
 ## Formato dos dados
 
@@ -166,6 +167,12 @@ Toda a configuração é salva em `config.json` no mesmo diretório do EXE, com 
     "max_retries": 0,
     "base_delay": 1,
     "max_delay": 60
+  },
+  "ai": {
+    "enabled": false,
+    "api_url": "https://api.openai.com/v1",
+    "api_key": "",
+    "model": "gpt-3.5-turbo"
   }
 }
 ```

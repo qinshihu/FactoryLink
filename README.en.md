@@ -55,7 +55,8 @@ Designed for frontline engineers, factory IT staff, and small system integrators
 - **Web Configuration UI**: Configure via browser, no command-line knowledge needed
 - **Real-time Data View**: WebSocket push, data refreshes in real time
 - **MQTT Forwarding**: Automatically forwards collected data to MQTT server
-- **Excel Import**: Batch import point configurations from Excel spreadsheets
+- **AI Configuration Assistant**: Describe your device in natural language, AI auto-generates config (supports OpenAI / Qwen / DeepSeek compatible APIs, SSE streaming + editable preview)
+- **Excel Import**: Batch import point configurations from Excel spreadsheets with preview confirmation dialog
 - **Device Connection Test**: One-click PLC connectivity test
 - **Auto Reconnection**: Automatic reconnection on network loss with exponential backoff
 - **Auto-start on Boot**: One-click Windows startup configuration
@@ -70,8 +71,8 @@ Designed for frontline engineers, factory IT staff, and small system integrators
 | Page | Functions |
 |------|-----------|
 | **Home** | Device card list, real-time data display, acquisition start/stop button, device online status, MQTT connection status |
-| **Device Config** | Add/edit/delete devices, protocol-specific configuration, point table CRUD, Excel import/template download, connection test |
-| **System Settings** | MQTT configuration, collection interval, reconnection strategy, auto-start on boot, log viewer (with level filtering) |
+| **Device Config** | Add/edit/delete devices, protocol-specific configuration, point table CRUD, Excel import (preview confirmation)/template download, connection test, **AI Configuration Assistant** (natural language to device config) |
+| **System Settings** | MQTT configuration, collection interval, reconnection strategy, auto-start on boot, **AI Settings** (API URL/Key/Model), log viewer (with level filtering) |
 
 ## Data Format
 
@@ -166,6 +167,12 @@ All configuration is saved in `config.json` in the same directory as the EXE. Au
     "max_retries": 0,
     "base_delay": 1,
     "max_delay": 60
+  },
+  "ai": {
+    "enabled": false,
+    "api_url": "https://api.openai.com/v1",
+    "api_key": "",
+    "model": "gpt-3.5-turbo"
   }
 }
 ```
@@ -219,6 +226,7 @@ All configuration is saved in `config.json` in the same directory as the EXE. Au
 - First row is the header (fixed format), data starts from row 2
 - Supports `.xlsx` and `.xls` formats
 - Download the template from the device configuration page
+- After import, a preview dialog appears; confirm to auto-fill the add device form
 
 ## Run from Source
 
@@ -375,7 +383,11 @@ A: Check that the MQTT server address and port are correct, and that MQTT is ena
 
 **Q: How to batch import points?**
 
-A: Download the Excel template from the device configuration page, fill it in, and import. The header is fixed: Point Name, Address, Data Type, Rate, Offset, Unit.
+A: Click "Import Excel" on the device configuration page, select your file. A preview dialog will show all parsed points. Confirm to auto-fill the add device form.
+
+**Q: How to use the AI Configuration Assistant?**
+
+A: Enable the AI assistant in System Settings and configure your API Key (supports OpenAI, Qwen, DeepSeek, etc.). Then expand the AI panel on the Device Config page and describe your device in natural language. Example: "Add a Siemens S7-1200 at 192.168.1.100, read 10 floats starting from DB3 offset 0, temperature data in ℃".
 
 **Q: How to set Modbus RTU serial port?**
 

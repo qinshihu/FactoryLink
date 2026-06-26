@@ -55,7 +55,8 @@ Entwickelt für Fertigungsingenieure, Fabrik-IT-Mitarbeiter und kleine Systemint
 - **Web-Konfigurationsoberfläche**: Konfiguration über Browser, keine Kommandozeilenkenntnisse nötig
 - **Echtzeit-Datenansicht**: WebSocket-Push, Datenaktualisierung in Echtzeit
 - **MQTT-Weiterleitung**: Automatische Weiterleitung erfasster Daten an MQTT-Server
-- **Excel-Import**: Stapelimport von Punktkonfigurationen aus Excel-Tabellen
+- **Excel-Import**: Stapelimport von Punktkonfigurationen aus Excel-Tabellen mit Vorschau-Dialog
+- **KI-Konfigurationsassistent**: Beschreiben Sie Ihr Gerät in natürlicher Sprache, KI generiert automatisch die Konfiguration (unterstützt OpenAI / Qwen / DeepSeek, SSE-Streaming + bearbeitbare Vorschau)
 - **Geräteverbindungstest**: Ein-Klick-PLC-Verbindungstest
 - **Automatische Wiederverbindung**: Automatische Wiederverbindung bei Netzwerkverlust mit exponentiellem Backoff
 - **Autostart beim Booten**: Ein-Klick-Windows-Autostart-Konfiguration
@@ -70,8 +71,8 @@ Entwickelt für Fertigungsingenieure, Fabrik-IT-Mitarbeiter und kleine Systemint
 | Seite | Funktionen |
 |-------|-----------|
 | **Startseite** | Gerätekartenliste, Echtzeitdatenanzeige, Start/Stopp-Taste, Geräte-Online-Status, MQTT-Verbindungsstatus |
-| **Gerätekonfiguration** | Geräte hinzufügen/bearbeiten/löschen, protokollspezifische Konfiguration, Punktetabellen-CRUD, Excel-Import/Vorlagen-Download, Verbindungstest |
-| **Systemeinstellungen** | MQTT-Konfiguration, Erfassungsintervall, Wiederverbindungsstrategie, Autostart beim Booten, Log-Viewer (mit Level-Filterung) |
+| **Gerätekonfiguration** | Geräte hinzufügen/bearbeiten/löschen, protokollspezifische Konfiguration, Punktetabellen-CRUD, Excel-Import (Vorschau)/Vorlagen-Download, Verbindungstest, **KI-Konfigurationsassistent** (natürliche Sprache zu Gerätekonfiguration) |
+| **Systemeinstellungen** | MQTT-Konfiguration, Erfassungsintervall, Wiederverbindungsstrategie, Autostart beim Booten, **KI-Einstellungen** (API-URL/Key/Modell), Log-Viewer (mit Level-Filterung) |
 
 ## Datenformat
 
@@ -166,6 +167,12 @@ Alle Einstellungen werden in `config.json` im selben Verzeichnis wie die EXE ges
     "max_retries": 0,
     "base_delay": 1,
     "max_delay": 60
+  },
+  "ai": {
+    "enabled": false,
+    "api_url": "https://api.openai.com/v1",
+    "api_key": "",
+    "model": "gpt-3.5-turbo"
   }
 }
 ```
