@@ -53,6 +53,7 @@ jobs:
             --collect-all pystray `
             --collect-all httpx `
             --collect-all openpyxl `
+            --collect-all python_multipart `
             --hidden-import snap7 `
             --hidden-import pymcprotocol `
             --name "FactoryLink" `

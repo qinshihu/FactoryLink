@@ -38,6 +38,7 @@ pyinstaller --onefile ^
     --collect-all pystray ^
     --collect-all httpx ^
     --collect-all openpyxl ^
+    --collect-all python_multipart ^
     --hidden-import snap7 ^
     --hidden-import pymcprotocol ^
     --name "工业数据采集网关" ^
