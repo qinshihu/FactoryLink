@@ -34,10 +34,12 @@
 ![配置页面](images/15.png)
 ![配置页面](images/1(1).png)
 ![配置页面](images/12.png)
+![配置页面](images/qqq.png)
 
-4. 配置你的PLC IP、点位表、MQTT地址
+ 4. 配置你的PLC IP、点位表、MQTT地址  
 
   ![设备配置](images/1(4).png)
+  ![设备配置](images/qq.png)
 
 5. 点"启动采集"，完事了
 
